@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="version" content="rsvp v1.1">
     <title>Wedding RSVP - Pipat & Pattaraporn</title>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Charm:wght@400;700&family=Kanit:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Marcellus&family=Kanit:wght@300;400;500&display=swap" rel="stylesheet">
     
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -24,11 +26,32 @@
         }
         .header {
             background: linear-gradient(135deg, #FDF4F4 0%, #FAF0E6 100%);
-            padding: 40px 20px; text-align: center; border-bottom: 1px solid #F3E5E5;
+            padding: 45px 20px; text-align: center; border-bottom: 1px solid #F3E5E5;
         }
-        .header h1 { font-family: 'Charm', cursive; font-size: 42px; color: #B48484; margin-bottom: 15px; font-weight: 700; }
+        
+        /* สไตล์ฟอนต์ Symphony สำหรับตัวอักษรภาษาอังกฤษ */
+        .symphony-subtitle {
+            font-family: 'Marcellus', serif;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: #D9B8B8;
+            margin-bottom: 8px;
+            display: block;
+        }
+        .symphony-title {
+            font-family: 'Pinyon Script', cursive;
+            font-size: 54px;
+            color: #B48484;
+            font-weight: normal;
+            line-height: 1.1;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
         .header .line { width: 40px; height: 2px; background-color: #D9B8B8; margin: 0 auto 15px auto; }
-        .header p { font-size: 14px; color: #8A7A75; margin-bottom: 5px; }
+        .header p.event-info { font-size: 14px; color: #8A7A75; margin-bottom: 5px; }
+        
         .form-body { padding: 30px; }
         .input-group { margin-bottom: 25px; }
         .input-group label { display: block; font-size: 14px; font-weight: 500; color: #9A8A85; margin-bottom: 8px; }
@@ -41,6 +64,8 @@
             background-color: #FFFFFF; border-color: #D9B8B8; box-shadow: 0 0 0 3px rgba(217, 184, 184, 0.2);
         }
         textarea { resize: none; }
+        
+        /* คอนเทนเนอร์แบบตาราง 2 คอลัมน์สำหรับปุ่มตัวเลือก */
         .radio-container { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
         .radio-box { position: relative; display: block; }
         .radio-box input[type="radio"] { display: none; }
@@ -52,6 +77,7 @@
         .radio-box input[type="radio"]:checked + label {
             background-color: #FFF0F0; border-color: #D9B8B8; color: #B48484; font-weight: 500;
         }
+        
         #followerSection { display: none; background-color: #FAF4F4; padding: 20px; border-radius: 12px; margin-top: 15px; }
         .btn-submit {
             width: 100%; background-color: #B48484; color: #FFFFFF; border: none;
@@ -66,18 +92,41 @@
 
     <div class="form-card">
         <div class="header">
-            <p style="font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: #D9B8B8;">Wedding Invitation</p>
-            <h1>Pipat & Pattaraporn</h1>
+            <span class="symphony-subtitle">Wedding Invitation</span>
+            <span class="symphony-title">Pipat & Pattaraporn</span>
             <div class="line"></div>
-            <p>วันเสาร์ที่ 9 มกราคม 2570 | เวลา 17:00 น.</p>
-            <p style="font-size: 13px;">ณ The Upper Ground จตุจักร</p>
+            <p class="event-info">วันเสาร์ที่ 9 มกราคม 2570 | เวลา 17:00 น.</p>
+            <p style="font-size: 13px; color: #8A7A75;">ณ The Upper Ground จตุจักร</p>
         </div>
 
         <div class="form-body">
             <form id="rsvpForm" name="rsvpForm">
+                
                 <div class="input-group">
                     <label>ชื่อ - นามสกุล (ผู้รับเชิญ)</label>
                     <input type="text" id="guestName" name="guestName" placeholder="กรุณาระบุชื่อ-นามสกุล ของท่าน" required>
+                </div>
+
+                <div class="input-group">
+                    <label>กลุ่มของคุณ</label>
+                    <div class="radio-container">
+                        <div class="radio-box">
+                            <input type="radio" id="groupGroomRelative" name="guestGroup" value="ญาติเจ้าบ่าว" required>
+                            <label for="groupGroomRelative">ญาติเจ้าบ่าว</label>
+                        </div>
+                        <div class="radio-box">
+                            <input type="radio" id="groupBrideRelative" name="guestGroup" value="ญาติเจ้าสาว">
+                            <label for="groupBrideRelative">ญาติเจ้าสาว</label>
+                        </div>
+                        <div class="radio-box">
+                            <input type="radio" id="groupGroomFriend" name="guestGroup" value="เพื่อนเจ้าบ่าว">
+                            <label for="groupGroomFriend">เพื่อนเจ้าบ่าว</label>
+                        </div>
+                        <div class="radio-box">
+                            <input type="radio" id="groupBrideFriend" name="guestGroup" value="เพื่อนเจ้าสาว">
+                            <label for="groupBrideFriend">เพื่อนเจ้าสาว</label>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="input-group">
@@ -116,7 +165,7 @@
     </div>
 
     <script>
-        // นำ URL Web App ของคุณมาใส่ตรงนี้ (อย่าลืมให้มีเครื่องหมาย ' ครอบไว้)
+        // ใช้ลิงก์ Google Apps Script ตัวเดิมของคุณอย่างต่อเนื่อง
         const scriptURL = 'https://script.google.com/macros/s/AKfycbw5mx0SrUg088wEuomWtC68VODHt-IG-MGCXdJhgdeHqXERkFGzyyqk759rQbQULvpG/exec';
         
         const form = document.forms['rsvpForm'];
@@ -136,7 +185,6 @@
         form.addEventListener('submit', e => {
             e.preventDefault();
             
-            // เปลี่ยนสถานะปุ่มตอนกำลังโหลด
             submitBtn.innerText = 'กำลังส่งข้อมูล...';
             submitBtn.disabled = true;
 
@@ -144,9 +192,9 @@
                 .then(response => {
                     const name = document.getElementById('guestName').value;
                     alert('บันทึกการตอบรับเรียบร้อยแล้ว ขอบพระคุณ ' + name + ' มากๆ ค่ะ 🤍');
-                    form.reset(); // ล้างฟอร์ม
-                    toggleFollower(false); // ซ่อนช่องผู้ติดตาม
-                    submitBtn.innerText = 'ส่งแบบตอบรับคำเชิญ'; // คืนค่าปุ่ม
+                    form.reset(); 
+                    toggleFollower(false); 
+                    submitBtn.innerText = 'ส่งแบบตอบรับคำเชิญ'; 
                     submitBtn.disabled = false;
                 })
                 .catch(error => {
