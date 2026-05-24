@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="version" content="rsvp v1.1">
+    <meta name="version" content="rsvp v1.3">
     <title>Wedding RSVP - Pipat & Pattaraporn</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,81 +11,197 @@
     <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Marcellus&family=Kanit:wght@300;400;500&display=swap" rel="stylesheet">
     
     <style>
+        /* 🎨 Color Palette from Image: Burgundy (#691D27) & Powder Blue (#BCCED6) */
+        :root {
+            --burgundy: #691D27;
+            --powder-blue: #BCCED6;
+            --soft-blue: #F0F4F7;
+            --text-main: #4A3F3F;
+            --text-light: #8E7A7A;
+        }
+
         * { box-sizing: border-box; margin: 0; padding: 0; }
+
         body {
             font-family: 'Kanit', sans-serif;
-            background-color: #FAEFEC;
-            color: #6B5B56;
-            display: flex; justify-content: center; align-items: center;
-            min-height: 100vh; padding: 20px; font-weight: 300;
+            background-color: var(--powder-blue);
+            background-image: radial-gradient(circle at center, #E2E8EE 0%, #BCCED6 100%);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            font-weight: 300;
         }
+
         .form-card {
-            background-color: #FFFFFF; width: 100%; max-width: 480px;
-            border-radius: 24px; box-shadow: 0 15px 35px rgba(180, 160, 160, 0.2);
-            overflow: hidden; border: 1px solid #FFF5F5;
+            background-color: #FFFFFF;
+            width: 100%;
+            max-width: 480px;
+            border-radius: 30px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.6);
         }
+
+        /* --- Header with Symphony Font Style --- */
         .header {
-            background: linear-gradient(135deg, #FDF4F4 0%, #FAF0E6 100%);
-            padding: 45px 20px; text-align: center; border-bottom: 1px solid #F3E5E5;
+            background-color: var(--burgundy);
+            background-image: linear-gradient(180deg, #7A242E 0%, #691D27 100%);
+            padding: 50px 20px;
+            text-align: center;
+            color: #FFFFFF;
         }
-        
-        /* สไตล์ฟอนต์ Symphony สำหรับตัวอักษรภาษาอังกฤษ */
+
         .symphony-subtitle {
             font-family: 'Marcellus', serif;
             font-size: 11px;
             text-transform: uppercase;
-            letter-spacing: 4px;
-            color: #D9B8B8;
-            margin-bottom: 8px;
+            letter-spacing: 5px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 10px;
             display: block;
         }
+
         .symphony-title {
             font-family: 'Pinyon Script', cursive;
-            font-size: 54px;
-            color: #B48484;
+            font-size: 58px;
+            color: #FFFFFF;
             font-weight: normal;
-            line-height: 1.1;
+            line-height: 1;
             margin-bottom: 15px;
             display: block;
         }
-        
-        .header .line { width: 40px; height: 2px; background-color: #D9B8B8; margin: 0 auto 15px auto; }
-        .header p.event-info { font-size: 14px; color: #8A7A75; margin-bottom: 5px; }
-        
-        .form-body { padding: 30px; }
-        .input-group { margin-bottom: 25px; }
-        .input-group label { display: block; font-size: 14px; font-weight: 500; color: #9A8A85; margin-bottom: 8px; }
+
+        .header .line {
+            width: 40px;
+            height: 1.5px;
+            background-color: var(--powder-blue);
+            margin: 0 auto 15px auto;
+            opacity: 0.6;
+        }
+
+        .header p {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+
+        /* --- Form Body --- */
+        .form-body {
+            padding: 35px 30px;
+        }
+
+        .input-group {
+            margin-bottom: 25px;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-light);
+            margin-bottom: 10px;
+        }
+
         input[type="text"], select, textarea {
-            width: 100%; padding: 14px 16px; background-color: #FCF9F9;
-            border: 1px solid #EBE0E0; border-radius: 12px;
-            font-family: 'Kanit', sans-serif; font-size: 15px; color: #6B5B56; transition: all 0.3s ease; outline: none;
+            width: 100%;
+            padding: 14px 18px;
+            background-color: var(--soft-blue);
+            border: 1.5px solid #E1E8ED;
+            border-radius: 14px;
+            font-family: 'Kanit', sans-serif;
+            font-size: 15px;
+            color: var(--text-main);
+            transition: all 0.3s ease;
+            outline: none;
         }
+
         input[type="text"]:focus, select:focus, textarea:focus {
-            background-color: #FFFFFF; border-color: #D9B8B8; box-shadow: 0 0 0 3px rgba(217, 184, 184, 0.2);
+            background-color: #FFFFFF;
+            border-color: var(--powder-blue);
+            box-shadow: 0 0 0 4px rgba(188, 206, 214, 0.3);
         }
-        textarea { resize: none; }
-        
-        /* คอนเทนเนอร์แบบตาราง 2 คอลัมน์สำหรับปุ่มตัวเลือก */
-        .radio-container { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-        .radio-box { position: relative; display: block; }
-        .radio-box input[type="radio"] { display: none; }
+
+        /* --- Grid & Buttons --- */
+        .radio-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .radio-box {
+            position: relative;
+        }
+
+        .radio-box input[type="radio"] {
+            display: none;
+        }
+
         .radio-box label {
-            display: block; text-align: center; padding: 14px 10px; background-color: #FCF9F9;
-            border: 1px solid #EBE0E0; border-radius: 12px; cursor: pointer;
-            font-size: 14px; color: #8A7A75; transition: all 0.3s ease;
+            display: block;
+            text-align: center;
+            padding: 14px 10px;
+            background-color: var(--soft-blue);
+            border: 1.5px solid #E1E8ED;
+            border-radius: 14px;
+            cursor: pointer;
+            font-size: 14px;
+            color: var(--text-light);
+            transition: all 0.3s ease;
         }
+
+        /* Selected State: Changes to Burgundy Theme */
         .radio-box input[type="radio"]:checked + label {
-            background-color: #FFF0F0; border-color: #D9B8B8; color: #B48484; font-weight: 500;
+            background-color: var(--burgundy);
+            border-color: var(--burgundy);
+            color: #FFFFFF;
+            font-weight: 500;
+            box-shadow: 0 4px 12px rgba(105, 29, 39, 0.2);
         }
-        
-        #followerSection { display: none; background-color: #FAF4F4; padding: 20px; border-radius: 12px; margin-top: 15px; }
+
+        #followerSection {
+            display: none;
+            background-color: var(--soft-blue);
+            padding: 20px;
+            border-radius: 18px;
+            margin-top: 15px;
+            border: 1px dashed var(--powder-blue);
+        }
+
+        /* --- Submit Button --- */
         .btn-submit {
-            width: 100%; background-color: #B48484; color: #FFFFFF; border: none;
-            padding: 16px; font-family: 'Kanit', sans-serif; font-size: 16px;
-            font-weight: 500; border-radius: 12px; cursor: pointer; transition: all 0.3s ease; margin-top: 10px;
+            width: 100%;
+            background-color: var(--burgundy);
+            color: #FFFFFF;
+            border: none;
+            padding: 18px;
+            font-family: 'Kanit', sans-serif;
+            font-size: 16px;
+            font-weight: 500;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+            letter-spacing: 1.5px;
+            box-shadow: 0 8px 20px rgba(105, 29, 39, 0.2);
         }
-        .btn-submit:hover { background-color: #A37373; transform: translateY(-2px); }
-        .btn-submit:disabled { background-color: #D9B8B8; cursor: not-allowed; transform: none; }
+
+        .btn-submit:hover {
+            background-color: #55161F;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(105, 29, 39, 0.3);
+        }
+
+        .btn-submit:disabled {
+            background-color: #B28E93;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        textarea { resize: none; }
     </style>
 </head>
 <body>
@@ -95,46 +211,51 @@
             <span class="symphony-subtitle">Wedding Invitation</span>
             <span class="symphony-title">Pipat & Pattaraporn</span>
             <div class="line"></div>
-            <p class="event-info">วันเสาร์ที่ 9 มกราคม 2570 | เวลา 17:00 น.</p>
-            <p style="font-size: 13px; color: #8A7A75;">ณ The Upper Ground จตุจักร</p>
+            <p>วันเสาร์ที่ 9 มกราคม 2570 | เวลา 17:00 น.</p>
+            <p style="font-size: 13px; opacity: 0.8; margin-top: 4px;">ณ The Upper Ground จตุจักร</p>
         </div>
 
         <div class="form-body">
             <form id="rsvpForm" name="rsvpForm">
                 
                 <div class="input-group">
-                    <label>ชื่อ - นามสกุล (ชื่อเล่น)(ผู้รับเชิญ)</label>
-                    <input type="text" id="guestName" name="guestName" placeholder="กรุณาระบุชื่อ-นามสกุล ชื่อเล่น ของท่าน" required>
+                    <label>ชื่อ - นามสกุล (ผู้รับเชิญ)</label>
+                    <input type="text" id="guestName" name="guestName" placeholder="ระบุชื่อ-นามสกุล ของท่าน" required>
+                </div>
+
+                <div class="input-group">
+                    <label>ชื่อเล่น</label>
+                    <input type="text" id="nickname" name="nickname" placeholder="ระบุชื่อเล่นของท่าน" required>
                 </div>
 
                 <div class="input-group">
                     <label>กลุ่มของคุณ</label>
-                    <div class="radio-container">
+                    <div class="radio-grid">
                         <div class="radio-box">
-                            <input type="radio" id="groupGroomRelative" name="guestGroup" value="ญาติเจ้าบ่าว" required>
-                            <label for="groupGroomRelative">ญาติเจ้าบ่าว</label>
+                            <input type="radio" id="g1" name="guestGroup" value="ญาติเจ้าบ่าว" required>
+                            <label for="g1">ญาติเจ้าบ่าว</label>
                         </div>
                         <div class="radio-box">
-                            <input type="radio" id="groupBrideRelative" name="guestGroup" value="ญาติเจ้าสาว">
-                            <label for="groupBrideRelative">ญาติเจ้าสาว</label>
+                            <input type="radio" id="g2" name="guestGroup" value="ญาติเจ้าสาว">
+                            <label for="g2">ญาติเจ้าสาว</label>
                         </div>
                         <div class="radio-box">
-                            <input type="radio" id="groupGroomFriend" name="guestGroup" value="เพื่อนเจ้าบ่าว">
-                            <label for="groupGroomFriend">เพื่อนเจ้าบ่าว</label>
+                            <input type="radio" id="g3" name="guestGroup" value="เพื่อนเจ้าบ่าว">
+                            <label for="g3">เพื่อนเจ้าบ่าว</label>
                         </div>
                         <div class="radio-box">
-                            <input type="radio" id="groupBrideFriend" name="guestGroup" value="เพื่อนเจ้าสาว">
-                            <label for="groupBrideFriend">เพื่อนเจ้าสาว</label>
+                            <input type="radio" id="g4" name="guestGroup" value="เพื่อนเจ้าสาว">
+                            <label for="g4">เพื่อนเจ้าสาว</label>
                         </div>
                     </div>
                 </div>
 
                 <div class="input-group">
                     <label>การเข้าร่วมงาน</label>
-                    <div class="radio-container">
+                    <div class="radio-grid">
                         <div class="radio-box">
                             <input type="radio" id="attend" name="attendance" value="ยินดีเข้าร่วม" required onchange="toggleFollower(true)">
-                            <label for="attend">ยินดีเข้าร่วมงาน 🤍</label>
+                            <label for="attend">ยินดีเข้าร่วม 🤍</label>
                         </div>
                         <div class="radio-box">
                             <input type="radio" id="decline" name="attendance" value="ไม่สะดวกเข้าร่วม" onchange="toggleFollower(false)">
@@ -144,7 +265,7 @@
                 </div>
 
                 <div id="followerSection">
-                    <label style="font-size: 14px; font-weight: 500; color: #9A8A85; margin-bottom: 8px; display: block;">จำนวนผู้ติดตาม (ไม่รวมตัวท่านเอง)</label>
+                    <label style="font-size: 14px; font-weight: 500; color: var(--text-light); margin-bottom: 8px; display: block;">จำนวนผู้ติดตาม (ไม่รวมตัวท่าน)</label>
                     <select id="followerCount" name="followerCount">
                         <option value="0">มาท่านเดียว (ไม่มีผู้ติดตาม)</option>
                         <option value="1">มีผู้ติดตาม 1 ท่าน</option>
@@ -165,20 +286,20 @@
     </div>
 
     <script>
-        // ใช้ลิงก์ Google Apps Script ตัวเดิมของคุณอย่างต่อเนื่อง
+        // ใช้ลิงก์ Google Apps Script ตัวเดิมที่คุณตั้งค่าไว้
         const scriptURL = 'https://script.google.com/macros/s/AKfycbw5mx0SrUg088wEuomWtC68VODHt-IG-MGCXdJhgdeHqXERkFGzyyqk759rQbQULvpG/exec';
         
         const form = document.forms['rsvpForm'];
         const submitBtn = document.getElementById('submitBtn');
 
         function toggleFollower(willAttend) {
-            const followerSection = document.getElementById('followerSection');
-            const followerCount = document.getElementById('followerCount');
+            const section = document.getElementById('followerSection');
+            const count = document.getElementById('followerCount');
             if (willAttend) {
-                followerSection.style.display = 'block';
+                section.style.display = 'block';
             } else {
-                followerSection.style.display = 'none';
-                followerCount.value = "0"; 
+                section.style.display = 'none';
+                count.value = "0"; 
             }
         }
 
@@ -190,8 +311,8 @@
 
             fetch(scriptURL, { method: 'POST', body: new FormData(form)})
                 .then(response => {
-                    const name = document.getElementById('guestName').value;
-                    alert('บันทึกการตอบรับเรียบร้อยแล้ว ขอบพระคุณ ' + name + ' มากๆ ค่ะ 🤍');
+                    const nick = document.getElementById('nickname').value;
+                    alert('บันทึกการตอบรับเรียบร้อยแล้ว ขอบพระคุณ ' + nick + ' มากๆ ค่ะ 🤍');
                     form.reset(); 
                     toggleFollower(false); 
                     submitBtn.innerText = 'ส่งแบบตอบรับคำเชิญ'; 
