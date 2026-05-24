@@ -4,197 +4,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Wedding RSVP - Pipat & Pattaraporn</title>
-    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Charm:wght@400;700&family=Kanit:wght@300;400;500&display=swap" rel="stylesheet">
     
     <style>
-        /* ตั้งค่าพื้นฐานให้มีความละมุน */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
+        * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
             font-family: 'Kanit', sans-serif;
-            background-color: #FAEFEC; /* สีพื้นหลังชมพูตุ่นๆ อมครีม */
-            color: #6B5B56; /* สีตัวหนังสือโทนน้ำตาลเทา ให้อารมณ์ซอฟต์ๆ */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-            font-weight: 300;
+            background-color: #FAEFEC;
+            color: #6B5B56;
+            display: flex; justify-content: center; align-items: center;
+            min-height: 100vh; padding: 20px; font-weight: 300;
         }
-
-        /* กล่องฟอร์มหลัก */
         .form-card {
-            background-color: #FFFFFF;
-            width: 100%;
-            max-width: 480px;
-            border-radius: 24px;
-            box-shadow: 0 15px 35px rgba(180, 160, 160, 0.2);
-            overflow: hidden;
-            border: 1px solid #FFF5F5;
+            background-color: #FFFFFF; width: 100%; max-width: 480px;
+            border-radius: 24px; box-shadow: 0 15px 35px rgba(180, 160, 160, 0.2);
+            overflow: hidden; border: 1px solid #FFF5F5;
         }
-
-        /* ส่วนหัวของฟอร์ม */
         .header {
             background: linear-gradient(135deg, #FDF4F4 0%, #FAF0E6 100%);
-            padding: 40px 20px;
-            text-align: center;
-            border-bottom: 1px solid #F3E5E5;
+            padding: 40px 20px; text-align: center; border-bottom: 1px solid #F3E5E5;
         }
-
-        .header h1 {
-            font-family: 'Charm', cursive;
-            font-size: 42px;
-            color: #B48484; /* สีชมพูกะปิ */
-            margin-bottom: 15px;
-            font-weight: 700;
+        .header h1 { font-family: 'Charm', cursive; font-size: 42px; color: #B48484; margin-bottom: 15px; font-weight: 700; }
+        .header .line { width: 40px; height: 2px; background-color: #D9B8B8; margin: 0 auto 15px auto; }
+        .header p { font-size: 14px; color: #8A7A75; margin-bottom: 5px; }
+        .form-body { padding: 30px; }
+        .input-group { margin-bottom: 25px; }
+        .input-group label { display: block; font-size: 14px; font-weight: 500; color: #9A8A85; margin-bottom: 8px; }
+        input[type="text"], select, textarea {
+            width: 100%; padding: 14px 16px; background-color: #FCF9F9;
+            border: 1px solid #EBE0E0; border-radius: 12px;
+            font-family: 'Kanit', sans-serif; font-size: 15px; color: #6B5B56; transition: all 0.3s ease; outline: none;
         }
-
-        .header .line {
-            width: 40px;
-            height: 2px;
-            background-color: #D9B8B8;
-            margin: 0 auto 15px auto;
+        input[type="text"]:focus, select:focus, textarea:focus {
+            background-color: #FFFFFF; border-color: #D9B8B8; box-shadow: 0 0 0 3px rgba(217, 184, 184, 0.2);
         }
-
-        .header p {
-            font-size: 14px;
-            color: #8A7A75;
-            margin-bottom: 5px;
-            letter-spacing: 0.5px;
-        }
-
-        /* พื้นที่สำหรับฟอร์ม */
-        .form-body {
-            padding: 30px;
-        }
-
-        .input-group {
-            margin-bottom: 25px;
-        }
-
-        .input-group label {
-            display: block;
-            font-size: 14px;
-            font-weight: 500;
-            color: #9A8A85;
-            margin-bottom: 8px;
-        }
-
-        /* การตกแต่งช่องกรอกข้อมูล (Text, Select, Textarea) */
-        input[type="text"], 
-        select, 
-        textarea {
-            width: 100%;
-            padding: 14px 16px;
-            background-color: #FCF9F9;
-            border: 1px solid #EBE0E0;
-            border-radius: 12px;
-            font-family: 'Kanit', sans-serif;
-            font-size: 15px;
-            color: #6B5B56;
-            transition: all 0.3s ease;
-            outline: none;
-        }
-
-        input[type="text"]:focus, 
-        select:focus, 
-        textarea:focus {
-            background-color: #FFFFFF;
-            border-color: #D9B8B8;
-            box-shadow: 0 0 0 3px rgba(217, 184, 184, 0.2);
-        }
-
-        textarea {
-            resize: none;
-        }
-
-        /* การตกแต่งตัวเลือก (Radio Buttons) แบบปุ่มกด */
-        .radio-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-        }
-
-        .radio-box {
-            position: relative;
-            display: block;
-        }
-
-        .radio-box input[type="radio"] {
-            display: none; /* ซ่อนปุ่มกลมๆ เดิมๆ ของเบราว์เซอร์ */
-        }
-
+        textarea { resize: none; }
+        .radio-container { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .radio-box { position: relative; display: block; }
+        .radio-box input[type="radio"] { display: none; }
         .radio-box label {
-            display: block;
-            text-align: center;
-            padding: 14px 10px;
-            background-color: #FCF9F9;
-            border: 1px solid #EBE0E0;
-            border-radius: 12px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 400;
-            color: #8A7A75;
-            transition: all 0.3s ease;
-            margin-bottom: 0;
+            display: block; text-align: center; padding: 14px 10px; background-color: #FCF9F9;
+            border: 1px solid #EBE0E0; border-radius: 12px; cursor: pointer;
+            font-size: 14px; color: #8A7A75; transition: all 0.3s ease;
         }
-
-        /* เมื่อถูกเลือก (Checked) */
         .radio-box input[type="radio"]:checked + label {
-            background-color: #FFF0F0;
-            border-color: #D9B8B8;
-            color: #B48484;
-            font-weight: 500;
+            background-color: #FFF0F0; border-color: #D9B8B8; color: #B48484; font-weight: 500;
         }
-
-        /* ส่วนของผู้ติดตาม (ซ่อนไว้ก่อน) */
-        #followerSection {
-            display: none;
-            background-color: #FAF4F4;
-            padding: 20px;
-            border-radius: 12px;
-            margin-top: 15px;
-        }
-
-        /* ปุ่ม Submit */
+        #followerSection { display: none; background-color: #FAF4F4; padding: 20px; border-radius: 12px; margin-top: 15px; }
         .btn-submit {
-            width: 100%;
-            background-color: #B48484;
-            color: #FFFFFF;
-            border: none;
-            padding: 16px;
-            font-family: 'Kanit', sans-serif;
-            font-size: 16px;
-            font-weight: 500;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 10px;
-            letter-spacing: 1px;
+            width: 100%; background-color: #B48484; color: #FFFFFF; border: none;
+            padding: 16px; font-family: 'Kanit', sans-serif; font-size: 16px;
+            font-weight: 500; border-radius: 12px; cursor: pointer; transition: all 0.3s ease; margin-top: 10px;
         }
-
-        .btn-submit:hover {
-            background-color: #A37373;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(180, 132, 132, 0.3);
-        }
-
-        .btn-submit:active {
-            transform: translateY(0);
-        }
+        .btn-submit:hover { background-color: #A37373; transform: translateY(-2px); }
+        .btn-submit:disabled { background-color: #D9B8B8; cursor: not-allowed; transform: none; }
     </style>
 </head>
 <body>
 
     <div class="form-card">
-        
         <div class="header">
             <p style="font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: #D9B8B8;">Wedding Invitation</p>
             <h1>Pipat & Pattaraporn</h1>
@@ -204,22 +74,21 @@
         </div>
 
         <div class="form-body">
-            <form id="rsvpForm">
-                
+            <form id="rsvpForm" name="rsvpForm">
                 <div class="input-group">
                     <label>ชื่อ - นามสกุล (ผู้รับเชิญ)</label>
-                    <input type="text" id="guestName" placeholder="กรุณาระบุชื่อ-นามสกุล ของท่าน" required>
+                    <input type="text" id="guestName" name="guestName" placeholder="กรุณาระบุชื่อ-นามสกุล ของท่าน" required>
                 </div>
 
                 <div class="input-group">
                     <label>การเข้าร่วมงาน</label>
                     <div class="radio-container">
                         <div class="radio-box">
-                            <input type="radio" id="attend" name="attendance" value="attend" required onchange="toggleFollower(true)">
+                            <input type="radio" id="attend" name="attendance" value="ยินดีเข้าร่วม" required onchange="toggleFollower(true)">
                             <label for="attend">ยินดีเข้าร่วมงาน 🤍</label>
                         </div>
                         <div class="radio-box">
-                            <input type="radio" id="decline" name="attendance" value="decline" onchange="toggleFollower(false)">
+                            <input type="radio" id="decline" name="attendance" value="ไม่สะดวกเข้าร่วม" onchange="toggleFollower(false)">
                             <label for="decline">ไม่สะดวกเข้าร่วม</label>
                         </div>
                     </div>
@@ -227,7 +96,7 @@
 
                 <div id="followerSection">
                     <label style="font-size: 14px; font-weight: 500; color: #9A8A85; margin-bottom: 8px; display: block;">จำนวนผู้ติดตาม (ไม่รวมตัวท่านเอง)</label>
-                    <select id="followerCount">
+                    <select id="followerCount" name="followerCount">
                         <option value="0">มาท่านเดียว (ไม่มีผู้ติดตาม)</option>
                         <option value="1">มีผู้ติดตาม 1 ท่าน</option>
                         <option value="2">มีผู้ติดตาม 2 ท่าน</option>
@@ -238,37 +107,55 @@
 
                 <div class="input-group" style="margin-top: 25px;">
                     <label>คำอวยพรถึงบ่าวสาว</label>
-                    <textarea id="wishes" rows="3" placeholder="ฝากคำอวยพรหรือข้อความยินดีได้ที่นี่..."></textarea>
+                    <textarea id="wishes" name="wishes" rows="3" placeholder="ฝากคำอวยพรหรือข้อความยินดีได้ที่นี่..."></textarea>
                 </div>
 
-                <button type="submit" class="btn-submit">ส่งแบบตอบรับคำเชิญ</button>
-
+                <button type="submit" class="btn-submit" id="submitBtn">ส่งแบบตอบรับคำเชิญ</button>
             </form>
         </div>
-
     </div>
 
     <script>
-        // ฟังก์ชันซ่อน/แสดง กรอบผู้ติดตาม
+        // นำ URL Web App ของคุณมาใส่ตรงนี้ (อย่าลืมให้มีเครื่องหมาย ' ครอบไว้)
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbw5mx0SrUg088wEuomWtC68VODHt-IG-MGCXdJhgdeHqXERkFGzyyqk759rQbQULvpG/exec';
+        
+        const form = document.forms['rsvpForm'];
+        const submitBtn = document.getElementById('submitBtn');
+
         function toggleFollower(willAttend) {
             const followerSection = document.getElementById('followerSection');
             const followerCount = document.getElementById('followerCount');
-            
             if (willAttend) {
                 followerSection.style.display = 'block';
             } else {
                 followerSection.style.display = 'none';
-                followerCount.value = "0"; // รีเซ็ตค่ากลับเป็น 0 ถ้าไม่มา
+                followerCount.value = "0"; 
             }
         }
 
-        // โชว์แจ้งเตือนเมื่อกดส่ง
-        document.getElementById('rsvpForm').addEventListener('submit', function(e) {
+        form.addEventListener('submit', e => {
             e.preventDefault();
-            const name = document.getElementById('guestName').value;
-            alert('บันทึกการตอบรับเรียบร้อยแล้ว ขอบพระคุณ ' + name + ' มากๆ ค่ะ 🤍');
+            
+            // เปลี่ยนสถานะปุ่มตอนกำลังโหลด
+            submitBtn.innerText = 'กำลังส่งข้อมูล...';
+            submitBtn.disabled = true;
+
+            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                .then(response => {
+                    const name = document.getElementById('guestName').value;
+                    alert('บันทึกการตอบรับเรียบร้อยแล้ว ขอบพระคุณ ' + name + ' มากๆ ค่ะ 🤍');
+                    form.reset(); // ล้างฟอร์ม
+                    toggleFollower(false); // ซ่อนช่องผู้ติดตาม
+                    submitBtn.innerText = 'ส่งแบบตอบรับคำเชิญ'; // คืนค่าปุ่ม
+                    submitBtn.disabled = false;
+                })
+                .catch(error => {
+                    console.error('Error!', error.message);
+                    alert('เกิดข้อผิดพลาดในการส่งข้อมูล กรุณาลองใหม่อีกครั้งค่ะ');
+                    submitBtn.innerText = 'ส่งแบบตอบรับคำเชิญ';
+                    submitBtn.disabled = false;
+                });
         });
     </script>
-
 </body>
 </html>
